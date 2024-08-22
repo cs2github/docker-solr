@@ -14,7 +14,7 @@ docker run -d \
   -v /root/solr:/docker-entrypoint-initdb.d \
   --name cs2-typo3s-solr-server \
   -p 8983:8983 \
-  cs2ag/docker-solr:v9.2
+  cs2ag/docker-solr:v9.6
 ```
 
 ## Environmental variables

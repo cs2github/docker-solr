@@ -1,10 +1,9 @@
-FROM solr:9.3
-MAINTAINER dkd Internet Service GmbH <solr-eb-support@dkd.de>
+FROM solr:9.6.1
+MAINTAINER dkd Internet Service GmbH <info@dkd.de>
 ENV TERM linux
 
 ARG SOLR_UNIX_UID="8983"
 ARG SOLR_UNIX_GID="8983"
-
 
 USER root
 RUN rm -fR /opt/solr/server/solr/* \
@@ -13,6 +12,8 @@ RUN rm -fR /opt/solr/server/solr/* \
   && chown -R solr:solr /var/solr /opt/solr \
   && apt update && apt upgrade -y && apt install sudo -y \
   && echo "solr ALL=NOPASSWD: /docker-entrypoint-initdb.d/as-sudo/*" > /etc/sudoers.d/solr
+
+COPY Docker/SolrServer/docker-entrypoint-initdb.d/ /docker-entrypoint-initdb.d
 USER solr
 
 COPY --chown=solr:solr Resources/Private/Solr/ /var/solr/data
