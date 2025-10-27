@@ -14,7 +14,7 @@ docker run -d \
   -v /root/solr:/docker-entrypoint-initdb.d \
   --name cs2-typo3s-solr-server \
   -p 8983:8983 \
-  cs2ag/docker-solr:v9.6
+  cs2ag/docker-solr:v9.9
 ```
 
 ## Environmental variables
@@ -46,7 +46,7 @@ Below example shows API call for create/unload (remove)/status. Docker container
 
 ```
 core=test
-curl "http://localhost:8983/solr/admin/cores?action=CREATE&&name=$core&configSet=ext_solr_12_0_0&schema=english/schema.xml&instanceDir=/var/solr/data/cores/$core&dataDir=/var/solr/data/data/$core"
+curl "http://localhost:8983/solr/admin/cores?action=CREATE&&name=$core&configSet=ext_solr_13_1_0&schema=english/schema.xml&instanceDir=/var/solr/data/cores/$core&dataDir=/var/solr/data/data/$core"
 curl "http://localhost:8983/solr/admin/cores?action=STATUS&core=$core"
 curl "http://localhost:8983/solr/admin/cores?action=UNLOAD&core=$core&deleteIndex=true&deleteDataDir=true&deleteInstanceDir=true"
 ```
